@@ -1,0 +1,29 @@
+name: Daily Green
+
+on:
+  schedule:
+    - cron: "10 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  green:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update log
+        run: |
+          mkdir -p logs
+          echo "$(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> logs/green.txt
+
+      - name: Commit
+        run: |
+          git config user.name "123lingyun"
+          git config user.email "你的GitHub绑定邮箱"
+          git add logs/green.txt
+          git commit -m "daily green" || exit 0
+          git push
