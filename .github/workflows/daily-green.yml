@@ -23,7 +23,7 @@ jobs:
       - name: Commit
         run: |
           git config user.name "123lingyun"
-          git config user.email "你的GitHub绑定邮箱"
+          git config user.email "1786258723@qq.com"
           git add logs/green.txt
           git commit -m "daily green" || exit 0
           git push
